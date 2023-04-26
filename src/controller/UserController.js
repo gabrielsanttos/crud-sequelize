@@ -16,7 +16,7 @@ module.exports = {
 
 
         } catch (error) {
-            res.status(400).json({ user })
+            res.status(400).json({ error })
         }
     },
     async listUsers(req, res) {
@@ -24,7 +24,7 @@ module.exports = {
             const users = await User.findAll()
 
             if (!users) {
-                res.status(200).json({ message: 'Não existe usuário cadastrado' })
+                res.status(401).json({ message: 'Não existe usuário cadastrado' })
             }
 
             res.status(200).json({ users })
@@ -43,7 +43,6 @@ module.exports = {
                 res.status(401).json({ message: 'Nenhum usuário encontrado' })
             } else {
                 const user = await User.update({ name, email }, { where: { id } })
-
                 res.status(200).json({ user })
             }
         } catch (error) {
