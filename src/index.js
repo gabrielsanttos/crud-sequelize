@@ -7,4 +7,5 @@ require('./database')
 app.use(express.json())
 app.use(routes)
 
-app.listen(3030)
+const PORT = 3030
+app.listen(process.env.PORT || PORT, () => console.log(`Server running on port ${PORT}`))
